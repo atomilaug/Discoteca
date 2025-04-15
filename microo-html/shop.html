@@ -35,6 +35,7 @@
    <a href="services.html">Servicios</a>
    <a href="shop.html">Tienda</a>
    <a href="contact.html">Contáctanos</a>
+   <a href="product.html">Productos</a>
 </div>
 
    <!-- header -->
@@ -320,6 +321,109 @@
          </div>
 
    </section>
+
+
+
+
+<!-- Estilos personalizados -->
+<style>
+   .btn-morado {
+     background-color: #6f42c1;
+     color: white;
+   }
+ 
+   .btn-morado:hover {
+     background-color: #5936a3;
+   }
+ 
+   .modal-header.morado {
+     background-color: #6f42c1;
+     color: white;
+   }
+ </style>
+ 
+ <!-- Botón para abrir el modal -->
+ <button type="button" class="btn btn-morado my-3" data-bs-toggle="modal" data-bs-target="#modalProductos">
+   Registrar Productos
+ </button>
+ 
+ <!-- Modal -->
+ <div class="modal fade" id="modalProductos" tabindex="-1" aria-labelledby="modalProductosLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg">
+     <div class="modal-content">
+       
+       <!-- Header morado -->
+       <div class="modal-header morado">
+         <h5 class="modal-title" id="modalProductosLabel">Registrar Producto</h5>
+         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+ 
+       <!-- Body con formulario -->
+       <div class="modal-body">
+         <form id="formProducto">
+           <div class="row">
+             <div class="col-md-6 mb-3">
+               <label for="producto" class="form-label">Nombre del Producto</label>
+               <input type="text" class="form-control" id="producto" required>
+             </div>
+             <div class="col-md-6 mb-3">
+               <label for="categoria" class="form-label">Categoría</label>
+               <input type="text" class="form-control" id="categoria" required>
+             </div>
+           </div>
+           <button type="submit" class="btn btn-morado">Agregar Producto</button>
+         </form>
+       </div>
+     </div>
+   </div>
+ </div>
+ 
+ <!-- Tabla para mostrar productos -->
+ <div class="container mt-4">
+   <h4>Lista de Productos</h4>
+   <table class="table table-striped">
+     <thead>
+       <tr>
+         <th>Producto</th>
+         <th>Categoría</th>
+       </tr>
+     </thead>
+     <tbody id="tablaProductos">
+       <!-- Aquí se insertarán los productos -->
+     </tbody>
+   </table>
+ </div>
+ 
+ <!-- Script para agregar productos a la tabla -->
+ <script>
+   document.getElementById('formProducto').addEventListener('submit', function(e) {
+     e.preventDefault();
+ 
+     const producto = document.getElementById('producto').value;
+     const categoria = document.getElementById('categoria').value;
+ 
+     const tabla = document.getElementById('tablaProductos');
+     const fila = document.createElement('tr');
+     fila.innerHTML = `
+       <td>${producto}</td>
+       <td>${categoria}</td>
+     `;
+     tabla.appendChild(fila);
+ 
+     // Limpiar campos y cerrar modal
+     this.reset();
+     const modal = bootstrap.Modal.getInstance(document.getElementById('modalProductos'));
+     modal.hide();
+   });
+ </script>
+
+
+
+
+
+
+
+
 
    </footer>
 
